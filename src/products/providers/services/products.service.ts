@@ -9,7 +9,7 @@ import { Model } from 'mongoose';
 import { ManufacturerService } from './manufacturer.service';
 import { ProductVariant } from 'src/products/schemas/product-variant.schema';
 import { Chance } from 'chance';
-import { Cron } from '@nestjs/schedule';
+import { Cron, CronExpression } from '@nestjs/schedule';
 import {
   ProductImportDocument,
   ProductImports,
@@ -225,7 +225,7 @@ export class ProductsService {
     return `${optionPackaging?.id || pkgItemId || ''}.${optionDescription?.id || descriptionItemId || ''}`;
   }
 
-  @Cron('10 * * * * *')
+  @Cron(CronExpression.EVERY_30_MINUTES)
   async importProducts() {
     //executes parsing and saving to mongo
     await this.executeParse();
