@@ -45,6 +45,18 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Notes on the product import 
+
+### Things this implementation will do
+- Files to be parsed should be placed in the `./static` folder
+- Cron for parsing runs every 30 minutes, feel free to adjust in the `src/products/providers/services/products.service.ts` line :228
+- Parsing method runs the last file inside the `./static` folder
+- filenames of files that have been parsed will be stored in the `Product Imports` collection. this will prevent reimporting of the same file.
+
+### Things this implementation won't do
+- GPT4 description enhancement prompt. I currently don't have a paid OpenAI key for testing this.
+
+
 ## Test
 
 ```bash
